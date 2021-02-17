@@ -1,2 +1,0 @@
-useDynLib(IonMobility, .registration=TRUE)
-importFrom(Rcpp, evalCpp)
