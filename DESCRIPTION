@@ -1,0 +1,42 @@
+Package: IonMobility
+Type: Package
+Title: Infrastructure for Ion Mobility enabled mass spectrometry
+Version: 1.0.0
+Date: 2021-02-17
+Author: Oliver Crook
+Maintainer: Oliver Crook <oliver.crook@stats.ox.ac.uk>
+Description: The IonMobility package extends the Spectra package to provide
+    efficient storing and handling of of ion mobility enabled mass spectrometry data,
+    as well as functionality for subsetting, processing and visualising such data.
+Depends:
+    R (>= 4.0.0),
+    S4Vectors,
+    BiocParallel,
+    ProtGenerics (>= 1.23.6),
+    Spectra
+Imports:
+    methods,
+    IRanges,
+    MsCoreUtils (>= 1.1.5),
+    Rcpp (>= 1.0.4),
+    graphics,
+    grDevices,
+    stats,
+    tools,
+    utils,
+    fs
+Suggests:
+    testthat,
+    knitr (>= 1.1.0),
+    msdata (>= 0.19.3),
+    roxygen2,
+    BiocStyle (>= 2.5.19),
+    mzR (>= 2.19.6),
+    rhdf5 (>= 2.32.0),
+    rmarkdown,
+    vdiffr,
+    magrittr
+License: Artistic-2.0
+LazyData: false
+VignetteBuilder: knitr
+LinkingTo: Rcpp
