@@ -2,21 +2,21 @@
 ##
 ## methods for Spectra and and MsBackendDataFrame
 
-imtime <- function(object){
+ionMobilityTime <- function(object){
     
-    Spectra:::.get_column(spectraData(object), "ionMobilityDriftTime")
+   ionMobilityTime(object)
 }
 
 .filterIonMobility <- function(x,
                                imtime = numeric(),
                                msLevel = integer()){
-    x[which(MsCoreUtils::between(spectraData(x)[, "ionMobilityDriftTime"], imtime)), , drop = FALSE]
+    x[which(MsCoreUtils::between(ionMobilityTime(x), imtime)), , drop = FALSE]
 }
 
-setMethod("imtime", "Spectra", function(object) {
-    Spectra:::.get_column(spectraData(object), "ionMobilityDriftTime")
+setMethod("ionMobilityTime", "Spectra", function(object, ...) {
+    do.call("$", list(object@backend, "ionMobilityDriftTime"))
 })
 
-setMethod("imtime", "MsBackendDataFrame", function(object) {
-    Spectra:::.get_column(spectraData(object), "ionMobilityDriftTime")
+setReplaceMethod("ionMobilityTime", "Spectra", function(object, value) {
+    do.call("$<-", list(object@backend, "ionMobilityDriftTime", value))
 })
