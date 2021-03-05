@@ -2,10 +2,15 @@
 ##
 ## methods for Spectra and and MsBackendDataFrame
 
-ionMobilityTime <- function(object){
+ionMobilityTime <- function(object, ...){
     
-   ionMobilityTime(object)
+   ionMobilityTime(object, ...)
 }
+
+"ionMobilityTime<-" <- function(object, value){
+    do.call("$<-", list(object@backend, "ionMobilityDriftTime", value))
+}
+
 
 .filterIonMobility <- function(x,
                                imtime = numeric(),
