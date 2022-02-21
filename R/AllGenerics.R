@@ -1,6 +1,6 @@
 setGeneric("filterIonMobility", function(object, ...)
     standardGeneric("filterIonMobility"))
 setGeneric("IonMobilityTime", function(object, ...)
-    standardGeneric("filterIonMobility"))
+    standardGeneric("IonMobilityTime"))
 setGeneric("IonMobilityTime<-", function(object, value)
-    standardGeneric("filterIonMobility"))
+    standardGeneric("IonMobilityTime<-"))

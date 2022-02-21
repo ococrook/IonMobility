@@ -18,7 +18,8 @@ Depends:
     S4Vectors,
     BiocParallel,
     ProtGenerics (>= 1.23.6),
-    Spectra
+    Spectra,
+    methods
 Imports:
     MsCoreUtils (>= 1.1.5),
     Rcpp (>= 1.0.4),
@@ -36,6 +37,5 @@ Suggests:
 License: Artistic-2.0
 LazyData: false
 VignetteBuilder: knitr
-LinkingTo: Rcpp
 biocViews: Infrastructure, Proteomics, MassSpectrometry, Metabolomics
 RoxygenNote: 7.1.2

@@ -1,5 +1,2 @@
-useDynLib(IonMobility, .registration=TRUE)
-importFrom(Rcpp, evalCpp)
-
 exportMethods(filterIonMobility)
 exportMethods(ionMobilityTime)
