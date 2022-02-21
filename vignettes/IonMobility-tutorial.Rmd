@@ -1,0 +1,83 @@
+---
+title: Processing Ion Mobility data
+author: "Oliver M. Crook"
+output:
+    BiocStyle::html_document:
+        toc_float: true
+geometry: margin = 2cm     
+vignette: >
+    %\VignetteIndexEntry{Processing Ion Mobility data}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+    %\VignettePackage{Spectra}
+    %\VignetteDepends{Spectra,mzR,BiocStyle}
+---
+
+```{r style, echo = FALSE, results = 'asis', message=FALSE}
+BiocStyle::markdown()
+```
+
+**Package**: `r Biocpkg("hdxmspro")`<br />
+**Authors**: `r packageDescription("hdxmspro")[["Author"]] `<br />
+**Last modified:** `r file.info("hdxmspro.Rmd")$mtime`<br />
+**Compiled**: `r date()`
+
+```{r, echo = FALSE, message = FALSE}
+library(Spectra)
+library(BiocStyle)
+library(Biostrings)
+library(ggplot2)
+library(viridis)
+library(patchwork)
+
+set.seed(1)
+```
+
+# Introduction
+
+This vignette seeks to explain how to process Ion Mobility enabled
+hydrogen deuterium exchange mass spectrometry data. Ion mobility data includes
+an additional dimension for peptide separation which reduces the peptide spectra
+overlap but does also mean that more peptides are resolved increasing the burdon
+on computational pipelines. The `hdxmspro` package depends on the `IonMobility`
+package which enables generics and methods to handle the additional dimension.
+
+# Getting started
+
+To load a Spectra object from a file, first provide the file path for example
+using `fl <- myfilepath`. Here is an example from within the package itself:
+
+```{r,}
+fpath <- system.file("extdata", "phosb_test",
+                     package = "IonMobility", mustWork = TRUE)
+```
+
+Now we can read it in as a Spectra object.
+```{r, cache = TRUE, warning=FALSE}
+phosb_test <- readRDS("phosb_test.rds")
+```
+
+We can examine the object. This test object contains 10 spectra. 
+Note that there are a much larger number of spectra than data
+without the ion mobility dimension.
+```{r,}
+phosb_test
+```
+
+Additional information located in the `spectraData`:
+```{r,}
+spectraData(phosb_test)
+```
+Note, the important additional spectra variable `ionMobilityDriftTime`.
+The units here is roughly `0.054` corresponding to the `adcPusherFrequency`
+```{r,}
+head(phosb_test$ionMobilityDriftTime)
+median(diff(phosb_test$ionMobilityDriftTime)) # estimate adcPusherFrequecy
+```
+The separate `IonMobility` package allow manipulation of this dimension of the
+data. The following functions work similary to the other filter functions:
+```{r,}
+head(IonMobility::ionMobilityTime(phosb_test))
+exmp <- IonMobility::filterIonMobility(phosb_test, c(0,0.5))
+exmp
+```

@@ -8,10 +8,11 @@ Authors@R: c(person("Crook", "Oliver M.",
 		    comment = c(ORCID = "0000-0001-5669-8506"),
 		    role = c("aut", "cre")))
 Description: The IonMobility package extends the Spectra package to provide
-    efficient storing and handling of of ion mobility enabled mass spectrometry data,
-    as well as functionality for subsetting, processing and visualising such data.
-    These comprises a self-contained functionality for all types of ion mobility
-    mass spectrometry data
+    efficient storing and handling of of ion mobility enabled mass spectrometry
+    data, as well as functionality for subsetting, processing and visualising
+    such data. These comprises a self-contained functionality for all types of
+    ion mobility mass spectrometry data. The package contains some basic
+    computations.
 Depends:
     R (>= 4.1),
     S4Vectors,
