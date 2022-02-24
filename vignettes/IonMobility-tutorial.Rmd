@@ -29,6 +29,7 @@ library(Biostrings)
 library(ggplot2)
 library(viridis)
 library(patchwork)
+library(IonMobility)
 
 set.seed(1)
 ```
@@ -44,17 +45,10 @@ package which enables generics and methods to handle the additional dimension.
 
 # Getting started
 
-To load a Spectra object from a file, first provide the file path for example
-using `fl <- myfilepath`. Here is an example from within the package itself:
+We load a small example dataset from the package
 
-```{r,}
-fpath <- system.file("extdata", "phosb_test",
-                     package = "IonMobility", mustWork = TRUE)
-```
-
-Now we can read it in as a Spectra object.
 ```{r, cache = TRUE, warning=FALSE}
-phosb_test <- readRDS("phosb_test.rds")
+data(phosb_test)
 ```
 
 We can examine the object. This test object contains 10 spectra. 
@@ -63,12 +57,18 @@ without the ion mobility dimension.
 ```{r,}
 phosb_test
 ```
-
 Additional information located in the `spectraData`:
 ```{r,}
 spectraData(phosb_test)
 ```
-Note, the important additional spectra variable `ionMobilityDriftTime`.
+Note, the important additional spectra variable `ionMobilityDriftTime`. 
+
+
+
+
+
+
+
 The units here is roughly `0.054` corresponding to the `adcPusherFrequency`
 ```{r,}
 head(phosb_test$ionMobilityDriftTime)
